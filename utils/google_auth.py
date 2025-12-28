@@ -46,6 +46,12 @@ def google_login_or_signup(token: str, role: str = None):
             country="",
             city="",
         )
+        
+    role = user.get("role")
+    if role == "vocalist":
+        info_submitted = bool(db.is_vocalist_registered(user["id"]))
+    else:
+        info_submitted = bool(db.is_writer_registered(user["id"]))
 
     access_token = create_access_token({"sub": str(user["id"])})
     refresh_token = create_refresh_token({"sub": str(user["id"])})
@@ -54,6 +60,7 @@ def google_login_or_signup(token: str, role: str = None):
         "access_token": access_token,
         "refresh_token": refresh_token,
         "token_type": "bearer",
+        "info_submitted": info_submitted,
         "user": {
             k: v for k, v in user.items() if k not in ("password_hash", "email")
         }

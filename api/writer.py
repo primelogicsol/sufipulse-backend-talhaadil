@@ -68,6 +68,7 @@ def get_writer_profile(
 
     if user["role"] == "writer":
         profile = db.get_writer_by_user_id(user["id"])
+        print("MAIN",profile)
     elif user["role"] not in ['sub-admin','admin']:
         profile = db.get_writer_by_user_id(writer_id)
     else:
