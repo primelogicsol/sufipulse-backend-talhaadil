@@ -4,7 +4,7 @@ from api import auth_router,user_router,admin_router,vocalist_router,kalam_route
 app = FastAPI(title="My App")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # Or ["*"] to allow all
+    allow_origins=["http://localhost", "http://127.0.0.1", "http://localhost:8000", "http://127.0.0.1:8000", "http://sufipulse.com","https://sufipulse.com","http://www.sufipulse.com","https://www.sufipulse.com","https://dkf.sufisciencecenter.info"],          # Or ["*"] to allow all
     allow_credentials=True,
     allow_methods=["*"],            # Allow all methods (GET, POST, OPTIONS, etc.)
     allow_headers=["*"],            # Allow all headers
